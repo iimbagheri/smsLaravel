@@ -1,0 +1,58 @@
+{
+    "name": "exonyx/sms",
+    "description": "Laravel SMS Gateway Integration Package",
+    "keywords": [],
+    "authors": [
+        {
+            "name": "Alireza Bagheri",
+            "email": "Alirezakj@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^7.4|^8.0",
+        "guzzlehttp/guzzle": "^7.0",
+        "illuminate/http": "^7.0|^8.0",
+        "illuminate/support": "^7.0|^8.0"
+    },
+    "require-dev": {
+        "aws/aws-sdk-php": "^3.87",
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "kavenegar/php": "^1.2",
+        "laravel/legacy-factories": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Exonyx\\Sms\\": "src"
+        },
+        "files": [
+            "src/Helper.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Exonyx\\Sms\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "psalm": "vendor/bin/psalm",
+        "test": "vendor/bin/phpunit --colors=always",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Exonyx\\Sms\\SmsServiceProvider"
+            ],
+            "aliases": {
+                "Sms": "Exonyx\\Sms\\Facades\\Sms"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

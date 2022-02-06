@@ -1,0 +1,30 @@
+<?php
+
+namespace Exonyx\Sms\Drivers;
+
+use Kavenegar\KavenegarApi;
+use Exonyx\Sms\Contracts\Driver;
+
+class Kavenegar extends Driver
+{
+    protected KavenegarApi $client;
+
+    protected function boot(): void
+    {
+        $this->client = new KavenegarApi(data_get($this->settings, 'apiKey'));
+    }
+
+    public function send()
+    {
+        $response = collect();
+
+        foreach ($this->recipients as $recipient) {
+            $response->put(
+                $recipient,
+                $this->client->Send(data_get($this->settings, 'from'), $recipient, $this->body)
+            );
+        }
+
+        return (count($this->recipients) == 1) ? $response->first() : $response;
+    }
+}
