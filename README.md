@@ -1,1 +1,1 @@
-# smsLaravel
+# Package SMS for Laravel 
